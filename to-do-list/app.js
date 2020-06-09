@@ -1,25 +1,11 @@
 const express = require('express');
+const checkListRouter =  require('./src/routes/checklist');
 
 const app = express();
 
 app.use(express.json());
-
-// Criei um middleware
-const log = (req, res, next) => {
-    console.log(req.body);
-    console.log(`Data: ${Date.now()}`);
-    next();
-}
-
-app.use(log);
-
-app.get('/', (req, res) => {
-    res.send('<h1>Minha lista de tarefas :)</h1>');
-})
-
-app.get('/json', (req, res) => {
-    res.json({title: 'Tarefa X', done: true});
-})
+// Todas as rotas do checkListRouter são derivadas da rota checklist
+app.use('/checklist', checkListRouter);
 
 app.listen(3000, () => {
     console.log('Servidor foi iniciado');
