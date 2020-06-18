@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const methodOverride = require('method-override');
 
 const checkListRouter =  require('./src/routes/checklist');
 const rootRouter =  require('./src/routes/index');
@@ -8,9 +9,11 @@ require('./config/database');
 
 const app = express();
 
+// Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 // Todas as rotas do checkListRouter são derivadas da rota checklist --- Middleware
 app.use('/', rootRouter);
