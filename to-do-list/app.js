@@ -9,11 +9,12 @@ require('./config/database');
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Todas as rotas do checkListRouter são derivadas da rota checklist --- Middleware
 app.use('/', rootRouter);
-app.use('/checklist', checkListRouter);
+app.use('/checklists', checkListRouter);
 // Setar o caminho das views
 app.set('views', path.join(__dirname, 'src/views'));
 // instalando o view engine
