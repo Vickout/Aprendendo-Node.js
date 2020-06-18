@@ -7,7 +7,7 @@
                 type="text" 
                 name="checklist[name]" 
                 placeholder="Lista de Tarefas"
-                value="<% checklist.name %>"
+                value="<%= checklist.name %>"
             >
             <% if(checklist.error && checklist.error.hasOwnProperty('name')) { %>
                 <p class="is-danger help">Name should be present</p>
