@@ -9,6 +9,8 @@ require('./config/database');
 const app = express();
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Todas as rotas do checkListRouter são derivadas da rota checklist --- Middleware
 app.use('/', rootRouter);
 app.use('/checklist', checkListRouter);
