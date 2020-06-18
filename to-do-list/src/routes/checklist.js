@@ -1,8 +1,11 @@
 const express = require('express');
+const  mongoose  = require('mongoose');
 
 const router = express.Router();
 
 const Checklist = require('../models/checklist');
+
+mongoose.set('useFindAndModify', false);
 
 router.get('/', async (req, res) => {
     try{
@@ -44,9 +47,7 @@ router.put('/:id', async (req, res) => {
     }
 })
 
-router.delete('/:id', async (req, res) => {
-    let { name } = req.body
-    
+router.delete('/:id', async (req, res) => {    
     try{
         let checklist = await Checklist.findByIdAndRemove(req.params.id);
         res.status(200).json(checklist);
